@@ -1,0 +1,26 @@
+{
+  "name": "installations-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mribichich/installations-api.git",
+  "author": "Matias Ribichich",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch dist dist/index",
+    "build": "rm -rf dist/ && tsc",
+    "build:watch": "tsc -w",
+    "test:cov": "yarn test -- --coverage",
+    "test:watch": "yarn test -- --watch",
+    "test": "jest"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "jest": "^21.1.0",
+    "nodemon": "^1.12.1",
+    "typescript": "^2.5.2"
+  }
+}
