@@ -6,7 +6,7 @@
   "author": "Matias Ribichich",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch dist dist/index",
+    "start": "nodemon --watch dist --delay 0.5 dist/index",
     "build": "rm -rf dist/ && tsc",
     "build:watch": "tsc -w",
     "test:cov": "yarn test -- --coverage",
@@ -16,9 +16,14 @@
   "dependencies": {
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
-    "mongodb": "^2.2.31"
+    "mongodb": "^2.2.31",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.16.5",
+    "@types/express": "^4.0.37",
+    "@types/mongodb": "^2.2.11",
+    "@types/node": "^8.0.29",
     "jest": "^21.1.0",
     "nodemon": "^1.12.1",
     "typescript": "^2.5.2"

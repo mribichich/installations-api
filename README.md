@@ -6,30 +6,41 @@ Api to save installations
 nodejs 8.x
 yarn
 
+### Start a mongo instance
+
+```bash
+$ docker run --name mongo -d -p 27017:27017 mongo
+```
+
 ## Usage
 
 ### Install dependencies
 
-`yarn`
+
+```bash
+$ yarn
+```
 
 ### Development
 
 ```bash
-yarn start:watch
-yarn test:watch
+$ yarn start:watch
+$ yarn test:watch
 ```
 
 ### Production
 
 ```bash
-NODE_ENV=production yarn build
-NODE_ENV=production yarn start
+$ NODE_ENV=production yarn build
+$ NODE_ENV=production yarn start
 ```
 
 ## Configuration
 
 ### Environment Variables
 
-| key | values |
+| key | format |
 | ----- | ----- |
-|  |  |
+| PORT | number |
+| MONGO_URL | string |
+| MONGO_DB | string |
