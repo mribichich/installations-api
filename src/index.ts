@@ -1,9 +1,9 @@
 import app from './app';
 import db from './db';
 
-const dbUrl = process.env.MONGO_URL
-  ? `${process.env.MONGO_URL}/${process.env.MONGO_DB}`
-  : 'mongodb://localhost:27017/installations-api';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://0.0.0.0:27017';
+const dbName = process.env.MONGO_DB || 'installations-api';
+const dbUrl = `${mongoUrl}/${dbName}`;
 const port = process.env.PORT || 5010;
 
 (async () => {

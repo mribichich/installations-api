@@ -1,8 +1,9 @@
 FROM node:8
-LABEL maintainer="Matias Ribichich <guli4073@gmail.com.ar>"
+LABEL maintainer="Matias Ribichich <guli4073@gmail.com>"
 
 WORKDIR /usr/src/app
 COPY package.json .
+COPY yarn.lock .
 RUN yarn
 COPY . .
 RUN NODE_ENV=production yarn build

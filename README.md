@@ -39,8 +39,8 @@ $ NODE_ENV=production yarn start
 
 ### Environment Variables
 
-| key | format |
-| ----- | ----- |
-| PORT | number |
-| MONGO_URL | string |
-| MONGO_DB | string |
+| key | format | default |
+| ----- | ----- | ----- |
+| PORT | number | 5010 |
+| MONGO_URL | string | mongodb://0.0.0.0:27017 |
+| MONGO_DB | string | installations-api |
