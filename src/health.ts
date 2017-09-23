@@ -1,9 +1,11 @@
+import * as isNil from 'ramda/src/isNil';
+
 import { getDb } from './db';
 
 const getStatus = () => {
   const db = getDb();
 
-  const dbStatus = db !== undefined && db !== null;
+  const dbStatus = !isNil(db);
   const all = dbStatus;
 
   return {

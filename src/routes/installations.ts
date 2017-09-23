@@ -48,4 +48,12 @@ router.post('/', async (req: Request, res) => {
   res.json({ id: installation._id });
 });
 
+router.delete('/', async (req: Request, res) => {
+  const { id } = req.query;
+
+  await req.collection.deleteOne({ _id: id });
+
+  res.sendStatus(200);
+});
+
 export default router;
