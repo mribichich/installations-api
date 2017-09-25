@@ -22,12 +22,18 @@ const router = express.Router();
 
 router.use((req: Request, res, next) => {
   const db = getDb();
-  req.collection = db.collection('INSTALLATIONS');
+  req.collection = db.collection(INSTALLATIONS);
   next();
 });
 
 router.get('/', async (req: Request, res) => {
-  const installations = await req.collection.find().toArray();
+  let findQuery: { clientId?: string } = {};
+
+  if (req.query.clientId) {
+    findQuery.clientId = req.query.clientId;
+  }
+
+  const installations = await req.collection.find(findQuery).toArray();
 
   res.json(installations);
 });
