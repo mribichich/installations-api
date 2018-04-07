@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:9
 LABEL maintainer="Matias Ribichich <guli4073@gmail.com>"
 
 WORKDIR /usr/src/app

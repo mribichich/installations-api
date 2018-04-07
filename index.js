@@ -1,1 +1,3 @@
-require("./dist");
+require('dotenv').config();
+
+require('./dist');

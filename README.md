@@ -1,9 +1,10 @@
 # installations-api
+
 Api to save installations
 
 ## Requerimientos
 
-nodejs 8.x
+nodejs 9.x
 yarn
 
 ### Start a mongo instance
@@ -15,7 +16,6 @@ $ docker run --name mongo -d -p 27017:27017 mongo
 ## Usage
 
 ### Install dependencies
-
 
 ```bash
 $ yarn
@@ -39,8 +39,9 @@ $ NODE_ENV=production yarn start
 
 ### Environment Variables
 
-| key | format | default |
-| ----- | ----- | ----- |
-| PORT | number | 5010 |
-| MONGO_URL | string | mongodb://0.0.0.0:27017 |
-| MONGO_DB | string | installations-api |
+| key        | format | default           |
+| ---------- | ------ | ----------------- |
+| PORT       | number | 5010              |
+| MONGO_HOST | string | 0.0.0.0           |
+| MONGO_PORT | number | 27017             |
+| MONGO_DB   | string | installations-api |
