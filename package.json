@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --watch dist --delay 0.5 dist/index",
-    "build": "rm -rf dist/ && tsc",
+    "clean": "rm -rf dist/",
+    "build": "yarn clean && tsc",
+    "build:prod": "NODE_ENV=production yarn clean && tsc",
     "build:watch": "tsc -w",
     "test:cov": "yarn test -- --coverage",
     "test:watch": "yarn test -- --watch",

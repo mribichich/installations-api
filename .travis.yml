@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+ - "node"
+
+stages:
+  - build
+  # - test
+  # - deploy
+
+jobs:
+  include:
+    - stage: build
+      install:
+        - yarn
+      script: yarn build:prod
+    # - # stage name not required, will continue to use `test`
+    #   script: ./test 2
+    # - stage: deploy
+    #   script: ./deploy
