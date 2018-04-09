@@ -3,61 +3,48 @@ import * as uuid from 'uuid/v4';
 import { Collection } from 'mongodb';
 
 import { getDb } from '../db';
+import { Request as BaseRequest } from './index';
+import * as clientsService from '../services/clients';
+import * as installationsService from '../services/installations';
 
-interface Request extends express.Request {
-  collection: Collection<Installation>;
-}
-
-interface Installation {
-  _id: uuid;
-  timestamp: Date;
-  clientId: uuid;
-  application: string;
-  version: string;
-}
-
-const INSTALLATIONS = 'installations';
 const router = express.Router();
-// const db = getDb();
 
-router.use((req: Request, res, next) => {
-  const db = getDb();
-  req.collection = db.collection(INSTALLATIONS);
-  next();
-});
+router.get('/', async (req, res) => {
+  const { client, timestampStart, timestampEnd } = req.query;
 
-router.get('/', async (req: Request, res) => {
-  let findQuery: { clientId?: string } = {};
-
-  if (req.query.clientId) {
-    findQuery.clientId = req.query.clientId;
-  }
-
-  const installations = await req.collection.find(findQuery).toArray();
+  const installations = await installationsService.find(
+    client,
+    timestampStart ? new Date(timestampStart) : null,
+    timestampEnd ? new Date(timestampEnd) : null
+  );
 
   res.json(installations);
 });
 
-router.post('/', async (req: Request, res) => {
-  const { body } = req;
-
-  const installation: Installation = {
-    _id: uuid(),
-    timestamp: body.timestamp || new Date(),
-    clientId: body.clientId,
-    application: body.application,
-    version: body.version
+router.post('/', async (req, res) => {
+  const { body } = req as {
+    body: {
+      timestamp: string;
+      client: string;
+      application: string;
+      version: string;
+    };
   };
 
-  await req.collection.insertOne(installation);
+  const installation = await installationsService.create(
+    body.timestamp ? new Date(body.timestamp) : null,
+    body.client,
+    body.application,
+    body.version
+  );
 
   res.json({ id: installation._id });
 });
 
-router.delete('/', async (req: Request, res) => {
-  const { id } = req.query;
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
 
-  await req.collection.deleteOne({ _id: id });
+  await installationsService.deleteOne(id);
 
   res.sendStatus(200);
 });
