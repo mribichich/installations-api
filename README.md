@@ -31,7 +31,7 @@ $ yarn test:watch
 ### Production
 
 ```bash
-$ NODE_ENV=production yarn build
+$ yarn build:prod
 $ NODE_ENV=production yarn start
 ```
 

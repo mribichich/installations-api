@@ -1,18 +1,30 @@
+sudo: required
+
 language: node_js
 node_js:
  - "node"
+
+services:
+  - docker
 
 stages:
   - build
   # - test
   # - deploy
 
+env:
+  - IMAGE_TAG=mribichich/installations-api
+
 jobs:
   include:
     - stage: build
-      install:
-        - yarn
-      script: yarn build:prod
+      # install:
+      #   - yarn
+      before_install:
+        - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+        - docker pull $IMAGE_TAG
+      script: docker build -f Dockerfile -t $IMAGE_TAG .
+      deploy: docker push $IMAGE_TAG
     # - # stage name not required, will continue to use `test`
     #   script: ./test 2
     # - stage: deploy
